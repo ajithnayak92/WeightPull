@@ -1,6 +1,10 @@
 # Define serial port and output file
 $SerialPort = "COM4"   # Update with your serial port (e.g., COM2, COM3)
-$OutputFile = "C:\Users\User\Downloads\Terminal20141030\output.txt"
+# Get the script's directory using $PSScriptRoot
+$ScriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Path $MyInvocation.MyCommand.Path }
+
+# Define the output file path in the same directory as the script
+$OutputFile = Join-Path -Path $ScriptDir -ChildPath "output.txt"
 
 # Create a new SerialPort object
 $port = New-Object System.IO.Ports.SerialPort $SerialPort, 9600, "None", 8, "One"
